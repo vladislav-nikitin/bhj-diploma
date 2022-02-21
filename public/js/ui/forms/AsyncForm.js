@@ -26,13 +26,10 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-    let forms = document.querySelectorAll("form");
-    for (let item of forms) {
-      item.addEventListener("submit", function (event) {
-        event.preventDefault();
-        this.submit();
-      });
-    }
+    this.element.addEventListener("submit", (event) => {
+      event.preventDefault();
+      this.submit();
+    });
   }
 
   /**

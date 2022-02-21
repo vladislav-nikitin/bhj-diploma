@@ -2,18 +2,19 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
-const createRequest = (options = {}) => {
+const createRequest = (options) => {
   const xhr = new XMLHttpRequest();
   let formData = new FormData();
   xhr.responseType = "json";
 
   if (options.method === "GET") {
-    options.url += `?`;
-    for (let option of options.data) {
-      options.url += `${option}=${options.data[option]}&`;
+    let url = options.url + "?";
+    for (let option in options.data) {
+      url = url + option + "=" + options.data[option] + "&";
     }
+    xhr.open(options.method, url);
   } else {
-    for (let option of options.data) {
+    for (option in options.data) {
       formData.append(option, options.data[option]);
     }
   }

@@ -37,16 +37,17 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-    document
-      .querySelector(".remove-account")
-      .addEventListener("click", function () {
-        this.removeAccount();
-      });
-    document
-      .querySelector(".transaction__remove")
-      .addEventListener("click", function () {
-        this.removeTransaction();
-      });
+    this.element.addEventListener("click", (event) => {
+      event.preventDefault();
+      let removeAccount = event.target.closest(".remove-account");
+      let transactionRemove = event.target.closest(".transaction__remove");
+      if (removeAccount) {
+        this.removeAccount(this.lastOptions.account_id);
+      }
+      if (transactionRemove) {
+        this.removeTransaction(transactionRemove.dataset.id);
+      }
+    });
   }
 
   /**
