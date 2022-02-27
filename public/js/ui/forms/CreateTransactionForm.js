@@ -19,13 +19,15 @@ class CreateTransactionForm extends AsyncForm {
   renderAccountsList() {
     const accountSelect = this.element.querySelector(".accounts-select");
     const options = accountSelect.querySelectorAll("option");
-    for (let item of options) {
-      item.remove();
+    if (options) {
+      for (let item of options) {
+        item.remove();
+      }
     }
     Account.list({}, (err, response) => {
       if (response && response.data) {
         let array = [];
-        for (item of response.data) {
+        for (let item of response.data) {
           document.createElement("option").value = item.id;
           document.createElement("option").textContent = item.name;
           array.push(document.createElement("option"));
@@ -45,11 +47,11 @@ class CreateTransactionForm extends AsyncForm {
     Transaction.create(data, (err, response) => {
       if (response) {
         if (this.element.id === "new-income-form") {
-          App.getForm("createIncome").reset();
+          App.getForm("createIncome").element.reset();
           App.getModal("newIncome").close();
         }
         if (this.element.id === "new-expense-form") {
-          App.getForm("createExpense").reset();
+          App.getForm("createExpense").element.reset();
           App.getModal("newExpense").close();
         }
         App.update();

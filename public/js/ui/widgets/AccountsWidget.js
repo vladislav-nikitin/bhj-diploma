@@ -31,10 +31,10 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-    document
+    this.element
       .querySelector(".create-account")
       .addEventListener("click", function () {
-        App.getModal("modal-new-account");
+        App.getModal("createAccount").open();
       });
     this.element.addEventListener("click", (event) => {
       if (event.target) {
@@ -57,9 +57,11 @@ class AccountsWidget {
   update() {
     if (User.current()) {
       Account.list({}, (err, response) => {
+        this.clear();
         if (response) {
-          this.clear();
-          this.renderItem();
+          response.data.forEach((item) => {
+            this.renderItem(item);
+          });
         }
       });
     }
@@ -71,8 +73,8 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-    let deleteItems = Array.from(document.querySelectorAll(".account"));
-    for (item of deleteItems) {
+    let deleteItems = Array.from(this.element.querySelectorAll(".account"));
+    for (let item of deleteItems) {
       item.remove();
     }
   }
@@ -84,14 +86,14 @@ class AccountsWidget {
    * счёта класс .active.
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
-  onSelectAccount(element) {
+  onSelectAccount(event) {
     if (this.element.querySelector(".active")) {
       this.element.querySelector(".active").classList.remove("active");
     }
-    if (element.target.closest(".account")) {
-      element.target.closest(".account").classList.add("active");
+    if (event.target.closest(".account")) {
+      event.target.closest(".account").classList.add("active");
       App.showPage("transactions", {
-        account_id: e.target.closest(".account").dataset.id,
+        account_id: event.target.closest(".account").dataset.id,
       });
     }
   }
@@ -103,13 +105,13 @@ class AccountsWidget {
    * */
   getAccountHTML(item) {
     return `
-    <li class="account" data-id="${item.id}">
-      <a href="#">
-        <span>${item.name}</span> /
-        <span>${item.sum} ₽</span>
-      </a>
-    </li>
-  `;
+        <li class="account" data-id="${item.id}">
+          <a href="#">
+            <span>${item.name}</span> /
+            <span>${item.sum} ₽</span>
+          </a>
+        </li>
+      `;
   }
 
   /**

@@ -64,7 +64,7 @@ class TransactionsPage {
       Account.remove({ id }, (err, response) => {
         if (response.success) {
           console.log(this.lastOptions);
-          TransactionsPage.clear();
+          this.clear();
           App.updateWidgets();
           App.updateForms();
         }
@@ -102,13 +102,15 @@ class TransactionsPage {
         Account.get(options.account_id, (err, response) => {
           if (response) {
             this.renderTitle(response.data.name);
+            document.querySelector(".remove-account").dataset.id =
+              response.data.id;
           }
         });
       }
       Transaction.list(options, (err, response) => {
         if (response) {
-          if (document.querySelector(".transaction")) {
-            document.querySelector(".content").innerHTML = "";
+          if (this.element.querySelector(".transaction")) {
+            this.element.querySelector(".content").innerHTML = "";
           }
           this.renderTransactions(response.data);
         }
@@ -131,7 +133,7 @@ class TransactionsPage {
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name) {
-    document.querySelector(".content-title").textContent = name;
+    this.element.querySelector(".content-title").textContent = name;
   }
 
   /**
@@ -185,8 +187,8 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data) {
-    let content = document.querySelector(".content");
-    for (item of data) {
+    let content = this.element.querySelector(".content");
+    for (let item of data) {
       content.insertAdjacentHTML("beforeend", this.getTransactionHTML(item));
     }
   }
