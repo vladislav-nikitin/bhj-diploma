@@ -26,12 +26,12 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
-    document
+    this.element
       .querySelector(".create-income-button")
       .addEventListener("click", function () {
         App.getModal("newIncome").open();
       });
-    document
+    this.element
       .querySelector(".create-expense-button")
       .addEventListener("click", function () {
         App.getModal("newExpense").open();

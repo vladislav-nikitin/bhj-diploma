@@ -28,7 +28,8 @@ class UserWidget {
    * */
   update() {
     if (User.current()) {
-      document.querySelector(".user-name").textContent = User.current().name;
+      this.element.querySelector(".user-name").textContent =
+        User.current().name;
     }
   }
 }

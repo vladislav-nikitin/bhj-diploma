@@ -59,7 +59,7 @@ class TransactionsPage {
    * либо обновляйте только виджет со счетами
    * для обновления приложения
    * */
-  removeAccount() {
+  removeAccount(id) {
     if (confirm("Вы действительно хотите удалить счёт?")) {
       Account.remove({ id }, (err, response) => {
         if (response.success) {
@@ -100,7 +100,7 @@ class TransactionsPage {
       this.lastOptions = options;
       if (options.account_id && options) {
         Account.get(options.account_id, (err, response) => {
-          if (response) {
+          if (response.success) {
             this.renderTitle(response.data.name);
             document.querySelector(".remove-account").dataset.id =
               response.data.id;
@@ -108,7 +108,7 @@ class TransactionsPage {
         });
       }
       Transaction.list(options, (err, response) => {
-        if (response) {
+        if (response.success) {
           if (this.element.querySelector(".transaction")) {
             this.element.querySelector(".content").innerHTML = "";
           }
@@ -156,6 +156,7 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item) {
+    item.date = this.formatDate(new Date(Date.parse(item.created_at)));
     return `<div class="transaction transaction_${item.type} row">
     <div class="col-md-7 transaction__details">
       <div class="transaction__icon">
@@ -163,9 +164,7 @@ class TransactionsPage {
       </div>
       <div class="transaction__info">
           <h4 class="transaction__title">${item.name}</h4>
-         <div class="transaction__date">${this.formatDate(
-           item.created_at
-         )}</div>
+          <div class="transaction__date">${item.date}</div>
          
       </div>
     </div>

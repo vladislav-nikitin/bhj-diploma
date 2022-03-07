@@ -9,6 +9,7 @@ class CreateTransactionForm extends AsyncForm {
    * */
   constructor(element) {
     super(element);
+    this.element = element;
     this.renderAccountsList();
   }
 
@@ -16,25 +17,23 @@ class CreateTransactionForm extends AsyncForm {
    * Получает список счетов с помощью Account.list
    * Обновляет в форме всплывающего окна выпадающий список
    * */
+
   renderAccountsList() {
-    const accountSelect = this.element.querySelector(".accounts-select");
-    const options = accountSelect.querySelectorAll("option");
-    if (options) {
-      for (let item of options) {
-        item.remove();
-      }
-    }
-    Account.list({}, (err, response) => {
-      if (response && response.data) {
-        let array = [];
-        for (let item of response.data) {
-          document.createElement("option").value = item.id;
-          document.createElement("option").textContent = item.name;
-          array.push(document.createElement("option"));
+    if (!User.current()) {
+      return;
+    } else
+      Account.list(User.current(), (err, response) => {
+        if (response.success) {
+          const accountSelect = this.element.querySelector(".accounts-select");
+          accountSelect.innerHTML = "";
+          response.data.forEach((item) => {
+            accountSelect.insertAdjacentHTML(
+              "beforeend",
+              `<option value="${item.id}">${item.name}</option>`
+            );
+          });
         }
-        array.forEach((item) => accountSelect.appendChild(item));
-      }
-    });
+      });
   }
 
   /**

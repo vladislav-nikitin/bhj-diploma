@@ -22,6 +22,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "Тестовый счет",
+      "user_id": "1",
+      "id": "cac47x490l0gfbpdn"
     }
   ],
   "transactions": [
@@ -72,15 +77,6 @@
     },
     {
       "account_id": "2",
-      "created_at": "2019-09-25 15:03:02",
-      "id": "17",
-      "name": "Овощи",
-      "sum": 300,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "2",
       "created_at": "2019-09-26 14:47:02",
       "id": "6",
       "name": "Мясо",
@@ -94,24 +90,6 @@
       "id": "7",
       "name": "Долг в банк",
       "sum": 5000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-10-15 13:27:02",
-      "id": "9",
-      "name": "На банду",
-      "sum": 15000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-09-17 13:27:02",
-      "id": "10",
-      "name": "На стволы",
-      "sum": 6000,
       "type": "expense",
       "user_id": "1"
     },
@@ -135,15 +113,6 @@
     },
     {
       "account_id": "3",
-      "created_at": "2018-01-15 13:27:02",
-      "id": "13",
-      "name": "Подарок сизого",
-      "sum": 20000,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
       "created_at": "2017-09-15 13:27:02",
       "id": "14",
       "name": "На охрану",
@@ -159,6 +128,78 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "cac47x9a4l0f86bsn",
+      "type": "income",
+      "name": "Зарплата",
+      "sum": 1000,
+      "account_id": "",
+      "user_id": "1",
+      "created_at": "2022-03-06T12:02:50.806Z"
+    },
+    {
+      "id": "cac47x8pkl0f90hsx",
+      "type": "income",
+      "name": "На стволы",
+      "sum": 10000,
+      "account_id": "",
+      "user_id": "1",
+      "created_at": "2022-03-06T12:26:18.272Z"
+    },
+    {
+      "id": "cac47xbucl0gex6at",
+      "type": "income",
+      "name": "Зарплата",
+      "sum": 1000,
+      "account_id": "",
+      "user_id": "1",
+      "created_at": "2022-03-07T07:59:27.268Z"
+    },
+    {
+      "id": "cac47x3esl0gexnme",
+      "type": "expense",
+      "name": "На стволы",
+      "sum": 1000,
+      "account_id": "",
+      "user_id": "1",
+      "created_at": "2022-03-07T07:59:49.717Z"
+    },
+    {
+      "id": "cac47xco0l0gf8blz",
+      "type": "income",
+      "name": "Проценты по вкладу",
+      "sum": 1000,
+      "account_id": "1",
+      "user_id": "1",
+      "created_at": "2022-03-07T08:08:07.366Z"
+    },
+    {
+      "id": "cac47x8wwl0gfawbu",
+      "type": "expense",
+      "name": "Закупка оборудования",
+      "sum": 500000,
+      "account_id": "3",
+      "user_id": "1",
+      "created_at": "2022-03-07T08:10:07.529Z"
+    },
+    {
+      "id": "cac47x908l0gfdbu2",
+      "type": "expense",
+      "name": "тестовый расход 1",
+      "sum": 10000,
+      "account_id": "cac47x490l0gfbpdn",
+      "user_id": "1",
+      "created_at": "2022-03-07T08:12:00.937Z"
+    },
+    {
+      "id": "cac47x83cl0gfsgfx",
+      "type": "income",
+      "name": "тестовый доход 1",
+      "sum": 1000,
+      "account_id": "cac47x490l0gfbpdn",
+      "user_id": "1",
+      "created_at": "2022-03-07T08:23:46.748Z"
     }
   ]
 }
